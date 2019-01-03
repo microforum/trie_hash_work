@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA17FCD921CD3A990077B0FD /* serial_port.c in Sources */ = {isa = PBXBuildFile; fileRef = DA17FCD821CD3A990077B0FD /* serial_port.c */; };
 		DA3ED91821CB50C000AFDDE7 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = DA3ED91721CB50C000AFDDE7 /* main.c */; };
+		DA3ED92321CB561200AFDDE7 /* nmea.c in Sources */ = {isa = PBXBuildFile; fileRef = DA3ED92221CB561200AFDDE7 /* nmea.c */; };
+		DAE5A97B21D9D5730075CAC9 /* hash_builder.c in Sources */ = {isa = PBXBuildFile; fileRef = DAE5A97A21D9D5730075CAC9 /* hash_builder.c */; };
+		DAE5A97E21DAF1B80075CAC9 /* pearson_hash.c in Sources */ = {isa = PBXBuildFile; fileRef = DAE5A97D21DAF1B80075CAC9 /* pearson_hash.c */; };
+		DAE5A98021DC547C0075CAC9 /* nmea_hashmap.c in Sources */ = {isa = PBXBuildFile; fileRef = DAE5A97F21DC547C0075CAC9 /* nmea_hashmap.c */; };
+		DAE5A98C21DC80370075CAC9 /* getcputime.c in Sources */ = {isa = PBXBuildFile; fileRef = DAE5A98821DC80370075CAC9 /* getcputime.c */; };
+		DAE5A9A221DDD80B0075CAC9 /* trie_search.c in Sources */ = {isa = PBXBuildFile; fileRef = DAE5A9A121DDD80B0075CAC9 /* trie_search.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +30,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DA17FCD721CD3A990077B0FD /* serial_port.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = serial_port.h; sourceTree = "<group>"; };
+		DA17FCD821CD3A990077B0FD /* serial_port.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = serial_port.c; sourceTree = "<group>"; };
 		DA3ED91421CB50C000AFDDE7 /* trie_work */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = trie_work; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA3ED91721CB50C000AFDDE7 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		DA3ED92121CB561200AFDDE7 /* nmea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nmea.h; sourceTree = "<group>"; };
+		DA3ED92221CB561200AFDDE7 /* nmea.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nmea.c; sourceTree = "<group>"; };
+		DAE5A97921D9D5730075CAC9 /* hash_builder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hash_builder.h; sourceTree = "<group>"; };
+		DAE5A97A21D9D5730075CAC9 /* hash_builder.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hash_builder.c; sourceTree = "<group>"; };
+		DAE5A97C21DAF1B80075CAC9 /* pearson_hash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pearson_hash.h; sourceTree = "<group>"; };
+		DAE5A97D21DAF1B80075CAC9 /* pearson_hash.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pearson_hash.c; sourceTree = "<group>"; };
+		DAE5A97F21DC547C0075CAC9 /* nmea_hashmap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nmea_hashmap.c; sourceTree = "<group>"; };
+		DAE5A98121DC55C90075CAC9 /* nmea_hashmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nmea_hashmap.h; sourceTree = "<group>"; };
+		DAE5A98821DC80370075CAC9 /* getcputime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getcputime.c; sourceTree = "<group>"; };
+		DAE5A98921DC80370075CAC9 /* getcputime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getcputime.h; sourceTree = "<group>"; };
+		DAE5A9A021DDD80B0075CAC9 /* trie_search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trie_search.h; sourceTree = "<group>"; };
+		DAE5A9A121DDD80B0075CAC9 /* trie_search.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = trie_search.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +78,21 @@
 		DA3ED91621CB50C000AFDDE7 /* trie_work */ = {
 			isa = PBXGroup;
 			children = (
+				DAE5A98121DC55C90075CAC9 /* nmea_hashmap.h */,
+				DAE5A97F21DC547C0075CAC9 /* nmea_hashmap.c */,
+				DA3ED92121CB561200AFDDE7 /* nmea.h */,
+				DA3ED92221CB561200AFDDE7 /* nmea.c */,
 				DA3ED91721CB50C000AFDDE7 /* main.c */,
+				DAE5A97921D9D5730075CAC9 /* hash_builder.h */,
+				DAE5A97A21D9D5730075CAC9 /* hash_builder.c */,
+				DA17FCD721CD3A990077B0FD /* serial_port.h */,
+				DA17FCD821CD3A990077B0FD /* serial_port.c */,
+				DAE5A98821DC80370075CAC9 /* getcputime.c */,
+				DAE5A98921DC80370075CAC9 /* getcputime.h */,
+				DAE5A9A121DDD80B0075CAC9 /* trie_search.c */,
+				DAE5A9A021DDD80B0075CAC9 /* trie_search.h */,
+				DAE5A97C21DAF1B80075CAC9 /* pearson_hash.h */,
+				DAE5A97D21DAF1B80075CAC9 /* pearson_hash.c */,
 			);
 			path = trie_work;
 			sourceTree = "<group>";
@@ -118,7 +153,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA3ED92321CB561200AFDDE7 /* nmea.c in Sources */,
+				DAE5A98C21DC80370075CAC9 /* getcputime.c in Sources */,
 				DA3ED91821CB50C000AFDDE7 /* main.c in Sources */,
+				DAE5A97E21DAF1B80075CAC9 /* pearson_hash.c in Sources */,
+				DA17FCD921CD3A990077B0FD /* serial_port.c in Sources */,
+				DAE5A97B21D9D5730075CAC9 /* hash_builder.c in Sources */,
+				DAE5A98021DC547C0075CAC9 /* nmea_hashmap.c in Sources */,
+				DAE5A9A221DDD80B0075CAC9 /* trie_search.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
