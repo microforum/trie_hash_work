@@ -12,8 +12,9 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int serial_open(char *portname, int speed);
+int serial_open(void);
 ssize_t serial_write(char *data, ssize_t length);
 ssize_t serial_read(char *data, ssize_t length);
+void serial_close(void);
 
 #endif /* serial_port_h */

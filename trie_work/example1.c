@@ -3,9 +3,6 @@
 #include <stdio.h>
 #include "serial_port.h"
 
-const char *wordList[] = {"GPGGA","GNGSA","GPGSV","GPBOD","GPDBT","GPDCN"};
-enum wordTokens {NO_WORD = -1,GPGGA,GNGSA,GPGSV,GPBOD,GPDBT,GPDCN};
-
 char * NMEA_getWord(void)
 {
     static char buffer[7];
@@ -26,6 +23,9 @@ char * NMEA_getWord(void)
     }
     return buffer;
 }
+
+const char *wordList[] = {"GPGGA","GNGSA","GPGSV","GPBOD","GPDBT","GPDCN"};
+enum wordTokens {NO_WORD = -1,GPGGA,GNGSA,GPGSV,GPBOD,GPDBT,GPDCN};
 
 enum wordTokens NMEA_findToken(char *word)
 {
