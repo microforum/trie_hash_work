@@ -3,6 +3,16 @@
 #include <stdio.h>
 #include "serial_port.h"
 
+#include <xc.h>
+void putch(char c)
+{
+    RCSTAbits.SPEN = 1;
+    TXSTAbits.TXEN = 1;
+    TXSTAbits.SYNC = 0;
+    TXREG = c;
+    NOP();
+}
+
 char * NMEA_getWord(void)
 {
     static char buffer[7];
@@ -43,6 +53,7 @@ enum wordTokens NMEA_findToken(char *word)
 
 int main(int argc, char **argv)
 {
+    printf("Starting Up\n");
   if(serial_open()>0)
   {
       for(int x = 0; x < 24; x ++)
