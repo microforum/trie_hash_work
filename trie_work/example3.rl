@@ -1,4 +1,8 @@
 
+// compile into C with ragel
+// ragel -C -L example3.rl -o example3.c
+//
+
 #include <string.h>
 #include <stdio.h>
 #include "serial_port.h"
@@ -29,7 +33,7 @@ char * NMEA_getWord(void)
 
 
 // const char *wordList[] = {"GPGGA","GNGSA","GPGSV","GPBOD","GPDBT","GPDCN"};
-enum wordTokens {NO_WORD = -1,GPGGA,GNGSA,GPGSV,GPBOD,GPDBT,GPDCN};
+enum wordTokens {NO_WORD = -1,GPGGA,GNGSA,GPGSV,GPBOD,GPDBT,GPDCN, GPRMC, GPBWC};
 
 enum wordTokens NMEA_findToken(char *word)
 {
@@ -45,6 +49,8 @@ action gpgsv { returnValue = GPGSV; fbreak; }
 action gpbod { returnValue = GPBOD; fbreak; }
 action gpdbt { returnValue = GPDBT; fbreak; }
 action gpdcn { returnValue = GPDCN; fbreak; }
+action gpbwc { returnValue = GPBWC; fbreak; }
+action gprmc { returnValue = GPRMC; fbreak; }
 
 gpgga = ('GPGGA') @gpgga;
 gngsa = ('GNGSA') @gngsa;
@@ -52,8 +58,10 @@ gpgsv = ('GPGSV') @gpgsv;
 gpbod = ('GPBOD') @gpbod;
 gpdbt = ('GPDBT') @gpdbt;
 gpdcn = ('GPDCN') @gpdcn;
+gpbwc = ('GPBWC') @gpbwc;
+gprmc = ('GPRMC') @gprmc;
 
-main := ( gpgga | gngsa | gpgsv | gpbod | gpdbt | gpdcn )*;
+main := ( gpgga | gngsa | gpgsv | gpbod | gpdbt | gpdcn | gpbwc | gprmc )*;
 
 }%%
     %% write init;

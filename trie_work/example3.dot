@@ -1,0 +1,36 @@
+digraph foo {
+	rankdir=LR;
+	node [ shape = point ];
+	ENTRY;
+	en_17;
+	node [ shape = circle, height = 0.2 ];
+	node [ fixedsize = true, height = 0.65, shape = doublecircle ];
+	17;
+	node [ shape = circle ];
+	1 -> 2 [ label = "78" ];
+	1 -> 5 [ label = "80" ];
+	2 -> 3 [ label = "71" ];
+	3 -> 4 [ label = "83" ];
+	4 -> 17 [ label = "65 / gngsa" ];
+	5 -> 6 [ label = "66" ];
+	5 -> 9 [ label = "68" ];
+	5 -> 12 [ label = "71" ];
+	5 -> 15 [ label = "82" ];
+	6 -> 7 [ label = "79" ];
+	6 -> 8 [ label = "87" ];
+	7 -> 17 [ label = "68 / gpbod" ];
+	8 -> 17 [ label = "67 / gpbwc" ];
+	9 -> 10 [ label = "66" ];
+	9 -> 11 [ label = "67" ];
+	10 -> 17 [ label = "84 / gpdbt" ];
+	11 -> 17 [ label = "78 / gpdcn" ];
+	12 -> 13 [ label = "71" ];
+	12 -> 14 [ label = "83" ];
+	13 -> 17 [ label = "65 / gpgga" ];
+	14 -> 17 [ label = "86 / gpgsv" ];
+	15 -> 16 [ label = "77" ];
+	16 -> 17 [ label = "67 / gprmc" ];
+	17 -> 1 [ label = "71" ];
+	ENTRY -> 17 [ label = "IN" ];
+	en_17 -> 17 [ label = "main" ];
+}
