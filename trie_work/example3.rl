@@ -1,8 +1,10 @@
 
-
 #include <string.h>
 #include <stdio.h>
 #include "serial_port.h"
+
+%%  machine foo;
+%%  write data;
 
 char * NMEA_getWord(void)
 {
@@ -31,34 +33,33 @@ enum wordTokens {NO_WORD = -1,GPGGA,GNGSA,GPGSV,GPBOD,GPDBT,GPDCN};
 
 enum wordTokens NMEA_findToken(char *word)
 {
+    const char *p = word;
+    const char *pe = word + strlen(word);
+    int cs;
     enum wordTokens returnValue = NO_WORD;
-    %%{
-    	machine NMEA;
-    	access fsm->;
 
-      action gpgga { returnValue = GPGGA; }
-      action gngsa { returnValue = GNGSA; }
-      action gpgsv { returnValue = GPGSV; }
-      action gpbod { returnValue = GPBOD; }
-      action gpdbt { returnValue = GPDBT; }
-      action gpdcn { returnValue = GPDCN; }
+%%{
+action gpgga { returnValue = GPGGA; fbreak; }
+action gngsa { returnValue = GNGSA; fbreak; }
+action gpgsv { returnValue = GPGSV; fbreak; }
+action gpbod { returnValue = GPBOD; fbreak; }
+action gpdbt { returnValue = GPDBT; fbreak; }
+action gpdcn { returnValue = GPDCN; fbreak; }
 
-      gpgga = ('GPGGA') @gpgga;
-      
-    	help = ( '-h' | '-H' | '-?' | '--help' ) 0 @help;
-    	version = ( '-v' | '--version' ) 0 @version;
-    	output = '-o' 0? string 0 @output;
-    	spec = '-S' 0? string 0 @spec;
-    	mach = '-M' 0? string 0 @mach;
+gpgga = ('GPGGA') @gpgga;
+gngsa = ('GNGSA') @gngsa;
+gpgsv = ('GPGSV') @gpgsv;
+gpbod = ('GPBOD') @gpbod;
+gpdbt = ('GPDBT') @gpdbt;
+gpdcn = ('GPDCN') @gpdcn;
 
-    	main := (
-    		help |
-    		version |
-    		output |
-    		spec |
-    		mach
-    	)*;
-    }%%
+main := ( gpgga | gngsa | gpgsv | gpbod | gpdbt | gpdcn )*;
+
+}%%
+    %% write init;
+    %% write exec noend;
+
+    return returnValue;
 }
 
 int main(int argc, char **argv)
