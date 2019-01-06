@@ -3,14 +3,13 @@
 #include <stdio.h>
 #include "serial_port.h"
 
+#pragma config FOSC = INTOSC    // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
+#pragma config WDTE = OFF       // Watchdog Timer Enable (WDT disabled)
+
 #include <xc.h>
 void putch(char c)
 {
-    RCSTAbits.SPEN = 1;
-    TXSTAbits.TXEN = 1;
-    TXSTAbits.SYNC = 0;
     TXREG = c;
-    NOP();
 }
 
 char * NMEA_getWord(void)
@@ -53,7 +52,12 @@ enum wordTokens NMEA_findToken(char *word)
 
 int main(int argc, char **argv)
 {
-    printf("Starting Up\n");
+    TXSTAbits.TXEN = 1;
+    TXSTAbits.SYNC = 0;
+    RCSTAbits.SPEN = 1;
+    while(!TRMT);
+
+    printf("Starting Up\nReady\n");
   if(serial_open()>0)
   {
       for(int x = 0; x < 24; x ++)
@@ -68,5 +72,6 @@ int main(int argc, char **argv)
       }
   }
   serial_close();
+  while(1);
   return 0;
 }
