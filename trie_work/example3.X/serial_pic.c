@@ -7,10 +7,21 @@
 
 
 #include <xc.h>
+#pragma config FOSC = INTOSC    // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
+#pragma config WDTE = OFF       // Watchdog Timer Enable (WDT disabled)
 
 int serial_open(void)
 {
+    TXSTAbits.TXEN = 1;
+    TXSTAbits.SYNC = 0;
+    RCSTAbits.SPEN = 1;
+    while(!TRMT);
     return 1;
+}
+
+void putch(char c)
+{
+    TXREG = c;
 }
 
 size_t serial_write(char *data, size_t length)

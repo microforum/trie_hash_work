@@ -12,8 +12,8 @@
 #include <stdio.h>
 
 int serial_open(void);
-size_t serial_write(char *data, size_t length);
-size_t serial_read(char *data, size_t length);
+ssize_t serial_write(char *data, ssize_t length);
+ssize_t serial_read(char *data, ssize_t length);
 void serial_close(void);
 
 #endif /* serial_port_h */

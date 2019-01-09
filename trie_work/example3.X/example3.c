@@ -9,73 +9,10 @@
 #include <stdio.h>
 #include "serial_port.h"
 
-#pragma config FOSC = INTOSC    // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
-#pragma config WDTE = OFF       // Watchdog Timer Enable (WDT disabled)
-
-#include <xc.h>
-void putch(char c)
-{
-    TXREG = c;
-}
 
 /* #line 11 "example3.rl" */
 
-/* #line 16 "example3.c" */
-static const char _foo_actions[] = {
-	0, 1, 0, 1, 1, 1, 2, 1, 
-	3, 1, 4, 1, 5, 1, 6, 1, 
-	7
-};
-
-static const char _foo_key_offsets[] = {
-	0, 0, 2, 3, 4, 5, 9, 11, 
-	12, 13, 15, 16, 17, 19, 20, 21, 
-	22, 23
-};
-
-static const char _foo_trans_keys[] = {
-	78, 80, 71, 83, 65, 66, 68, 71, 
-	82, 79, 87, 68, 67, 66, 67, 84, 
-	78, 71, 83, 65, 86, 77, 67, 71, 
-	0
-};
-
-static const char _foo_single_lengths[] = {
-	0, 2, 1, 1, 1, 4, 2, 1, 
-	1, 2, 1, 1, 2, 1, 1, 1, 
-	1, 1
-};
-
-static const char _foo_range_lengths[] = {
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 0
-};
-
-static const char _foo_index_offsets[] = {
-	0, 0, 3, 5, 7, 9, 14, 17, 
-	19, 21, 24, 26, 28, 31, 33, 35, 
-	37, 39
-};
-
-static const char _foo_trans_targs[] = {
-	2, 5, 0, 3, 0, 4, 0, 17, 
-	0, 6, 9, 12, 15, 0, 7, 8, 
-	0, 17, 0, 17, 0, 10, 11, 0, 
-	17, 0, 17, 0, 13, 14, 0, 17, 
-	0, 17, 0, 16, 0, 17, 0, 1, 
-	0, 0
-};
-
-static const char _foo_trans_actions[] = {
-	0, 0, 0, 0, 0, 0, 0, 3, 
-	0, 0, 0, 0, 0, 0, 0, 0, 
-	0, 7, 0, 13, 0, 0, 0, 0, 
-	9, 0, 11, 0, 0, 0, 0, 1, 
-	0, 5, 0, 0, 0, 15, 0, 0, 
-	0, 0
-};
-
+/* #line 16 "example3.X/example3.c" */
 static const int foo_start = 17;
 static const int foo_first_final = 17;
 static const int foo_error = 0;
@@ -121,125 +58,169 @@ enum wordTokens NMEA_findToken(char *word)
 /* #line 66 "example3.rl" */
 
     
-/* #line 117 "example3.c" */
+/* #line 62 "example3.X/example3.c" */
 	{
 	cs = foo_start;
 	}
 
 /* #line 68 "example3.rl" */
     
-/* #line 124 "example3.c" */
+/* #line 69 "example3.X/example3.c" */
 	{
-	int _klen;
-	unsigned int _trans;
-	const char *_acts;
-	unsigned int _nacts;
-	const char *_keys;
-
-	if ( cs == 0 )
-		goto _out;
-_resume:
-	_keys = _foo_trans_keys + _foo_key_offsets[cs];
-	_trans = _foo_index_offsets[cs];
-
-	_klen = _foo_single_lengths[cs];
-	if ( _klen > 0 ) {
-		const char *_lower = _keys;
-		const char *_mid;
-		const char *_upper = _keys + _klen - 1;
-		while (1) {
-			if ( _upper < _lower )
-				break;
-
-			_mid = _lower + ((_upper-_lower) >> 1);
-			if ( (*p) < *_mid )
-				_upper = _mid - 1;
-			else if ( (*p) > *_mid )
-				_lower = _mid + 1;
-			else {
-				_trans += (unsigned int)(_mid - _keys);
-				goto _match;
-			}
-		}
-		_keys += _klen;
-		_trans += _klen;
-	}
-
-	_klen = _foo_range_lengths[cs];
-	if ( _klen > 0 ) {
-		const char *_lower = _keys;
-		const char *_mid;
-		const char *_upper = _keys + (_klen<<1) - 2;
-		while (1) {
-			if ( _upper < _lower )
-				break;
-
-			_mid = _lower + (((_upper-_lower) >> 1) & ~1);
-			if ( (*p) < _mid[0] )
-				_upper = _mid - 2;
-			else if ( (*p) > _mid[1] )
-				_lower = _mid + 2;
-			else {
-				_trans += (unsigned int)((_mid - _keys)>>1);
-				goto _match;
-			}
-		}
-		_trans += _klen;
-	}
-
-_match:
-	cs = _foo_trans_targs[_trans];
-
-	if ( _foo_trans_actions[_trans] == 0 )
-		goto _again;
-
-	_acts = _foo_actions + _foo_trans_actions[_trans];
-	_nacts = (unsigned int) *_acts++;
-	while ( _nacts-- > 0 )
+	switch ( cs )
 	{
-		switch ( *_acts++ )
-		{
-	case 0:
-/* #line 46 "example3.rl" */
-	{ returnValue = GPGGA; {p++; goto _out; } }
-	break;
-	case 1:
+tr5:
 /* #line 47 "example3.rl" */
-	{ returnValue = GNGSA; {p++; goto _out; } }
-	break;
-	case 2:
-/* #line 48 "example3.rl" */
-	{ returnValue = GPGSV; {p++; goto _out; } }
-	break;
-	case 3:
+	{ returnValue = GNGSA; {p++; cs = 17; goto _out;} }
+	goto st17;
+tr12:
 /* #line 49 "example3.rl" */
-	{ returnValue = GPBOD; {p++; goto _out; } }
-	break;
-	case 4:
-/* #line 50 "example3.rl" */
-	{ returnValue = GPDBT; {p++; goto _out; } }
-	break;
-	case 5:
-/* #line 51 "example3.rl" */
-	{ returnValue = GPDCN; {p++; goto _out; } }
-	break;
-	case 6:
+	{ returnValue = GPBOD; {p++; cs = 17; goto _out;} }
+	goto st17;
+tr13:
 /* #line 52 "example3.rl" */
-	{ returnValue = GPBWC; {p++; goto _out; } }
-	break;
-	case 7:
+	{ returnValue = GPBWC; {p++; cs = 17; goto _out;} }
+	goto st17;
+tr16:
+/* #line 50 "example3.rl" */
+	{ returnValue = GPDBT; {p++; cs = 17; goto _out;} }
+	goto st17;
+tr17:
+/* #line 51 "example3.rl" */
+	{ returnValue = GPDCN; {p++; cs = 17; goto _out;} }
+	goto st17;
+tr20:
+/* #line 46 "example3.rl" */
+	{ returnValue = GPGGA; {p++; cs = 17; goto _out;} }
+	goto st17;
+tr21:
+/* #line 48 "example3.rl" */
+	{ returnValue = GPGSV; {p++; cs = 17; goto _out;} }
+	goto st17;
+tr23:
 /* #line 53 "example3.rl" */
-	{ returnValue = GPRMC; {p++; goto _out; } }
-	break;
-/* #line 227 "example3.c" */
-		}
+	{ returnValue = GPRMC; {p++; cs = 17; goto _out;} }
+	goto st17;
+st17:
+	p += 1;
+case 17:
+/* #line 108 "example3.X/example3.c" */
+	if ( (*p) == 71 )
+		goto st1;
+	goto st0;
+st0:
+cs = 0;
+	goto _out;
+st1:
+	p += 1;
+case 1:
+	switch( (*p) ) {
+		case 78: goto st2;
+		case 80: goto st5;
+	}
+	goto st0;
+st2:
+	p += 1;
+case 2:
+	if ( (*p) == 71 )
+		goto st3;
+	goto st0;
+st3:
+	p += 1;
+case 3:
+	if ( (*p) == 83 )
+		goto st4;
+	goto st0;
+st4:
+	p += 1;
+case 4:
+	if ( (*p) == 65 )
+		goto tr5;
+	goto st0;
+st5:
+	p += 1;
+case 5:
+	switch( (*p) ) {
+		case 66: goto st6;
+		case 68: goto st9;
+		case 71: goto st12;
+		case 82: goto st15;
+	}
+	goto st0;
+st6:
+	p += 1;
+case 6:
+	switch( (*p) ) {
+		case 79: goto st7;
+		case 87: goto st8;
+	}
+	goto st0;
+st7:
+	p += 1;
+case 7:
+	if ( (*p) == 68 )
+		goto tr12;
+	goto st0;
+st8:
+	p += 1;
+case 8:
+	if ( (*p) == 67 )
+		goto tr13;
+	goto st0;
+st9:
+	p += 1;
+case 9:
+	switch( (*p) ) {
+		case 66: goto st10;
+		case 67: goto st11;
+	}
+	goto st0;
+st10:
+	p += 1;
+case 10:
+	if ( (*p) == 84 )
+		goto tr16;
+	goto st0;
+st11:
+	p += 1;
+case 11:
+	if ( (*p) == 78 )
+		goto tr17;
+	goto st0;
+st12:
+	p += 1;
+case 12:
+	switch( (*p) ) {
+		case 71: goto st13;
+		case 83: goto st14;
+	}
+	goto st0;
+st13:
+	p += 1;
+case 13:
+	if ( (*p) == 65 )
+		goto tr20;
+	goto st0;
+st14:
+	p += 1;
+case 14:
+	if ( (*p) == 86 )
+		goto tr21;
+	goto st0;
+st15:
+	p += 1;
+case 15:
+	if ( (*p) == 77 )
+		goto st16;
+	goto st0;
+st16:
+	p += 1;
+case 16:
+	if ( (*p) == 67 )
+		goto tr23;
+	goto st0;
 	}
 
-_again:
-	if ( cs == 0 )
-		goto _out;
-	p += 1;
-	goto _resume;
 	_out: {}
 	}
 
@@ -250,12 +231,6 @@ _again:
 
 int main(int argc, char **argv)
 {
-    TXSTAbits.TXEN = 1;
-    TXSTAbits.SYNC = 0;
-    RCSTAbits.SPEN = 1;
-    while(!TRMT);
-
-    printf("Starting Up\nReady\n");
   if(serial_open()>0)
   {
       for(int x = 0; x < 24; x ++)

@@ -6,29 +6,36 @@
  */
 
 
+#include "../serial_port.h"
 #include <xc.h>
 
 int serial_open(void)
 {
+    TXSTAbits.TXEN = 1;
+    TXSTAbits.SYNC = 0;
+    RCSTAbits.SPEN = 1;
+    RCSTAbits.CREN = 1;
+    while(!TRMT);
     return 1;
 }
 
-size_t serial_write(char *data, size_t length)
+void putch(char c)
+{
+    TXREG = c;
+}
+
+ssize_t serial_write(char *data, ssize_t length)
 {
     return length;
 }
-size_t serial_read(char *data, size_t length)
+
+
+ssize_t serial_read(char *data, ssize_t length)
 {
-    const char testdata[] = "$GNGSA,asdf\n$GPGSV,asdf\n$GLGSV,asdf\n$GPRMC,asdf\n$GPGGA,asdf\n";
-    static int index = 0;
-    
-    for(int x = 0; x < length;x++)
+    while(length--)
     {
-        data[x] = testdata[index++];
-        if(index > sizeof(testdata)-1)
-        {
-            index = 0;
-        }
+        while(PIR1bits.RCIF==0);
+            *data++ = RCREG;
     }
     return length;
 }
