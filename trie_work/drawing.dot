@@ -1,0 +1,12 @@
+digraph {
+  find -> identify
+  identify -> doGGA -> find
+  identify -> doGNGSA -> find
+  identify -> do -> find
+
+  find [label="Find A Keyword"]
+  identify [label="Identify The Keyword", shape = box ]
+  doGGA [label="Process Sentence Data for GPGGA", color = grey]
+  doGNGSA [label="Process Sentence Data for GNGSA", color = grey]
+  do [label="Process all the other interesting sentences", color = grey]
+}
